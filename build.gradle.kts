@@ -21,6 +21,7 @@ subprojects {
     val libs = rootProject.libs
 
     group = rootProject.group
+    version = property("version") as String
 
     repositories.addAll(rootProject.repositories)
 
@@ -41,6 +42,11 @@ subprojects {
 
     kotlin {
         jvmToolchain(21)
+    }
+
+    java {
+        withSourcesJar()
+        withJavadocJar()
     }
 
     if ((properties["publish"] as? String)?.toBooleanStrictOrNull() ?: false) {
