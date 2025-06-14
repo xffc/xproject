@@ -33,3 +33,9 @@ jobs:
 
         run:
           chmod +x ./gradlew && ./gradlew publish --no-daemon
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+
+        with:
+          path: build/

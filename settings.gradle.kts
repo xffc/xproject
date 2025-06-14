@@ -13,4 +13,3 @@ rootProject.name = "xproject"
 
 include("core")
 include("kraft")
-include("teleutil")

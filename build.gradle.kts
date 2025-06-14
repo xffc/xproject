@@ -10,8 +10,8 @@ group = "fun.xffc.${rootProject.name}"
 val user = property("github.user") as String
 val repo = property("github.repo") as String
 
-val githubActor = System.getenv("GITHUB_ACTOR")
-val githubToken = System.getenv("GITHUB_TOKEN")
+val githubActor = System.getenv("GITHUB_ACTOR")!!
+val githubToken = System.getenv("GITHUB_TOKEN")!!
 
 repositories {
     mavenCentral()
@@ -25,6 +25,7 @@ subprojects {
 
     repositories.addAll(rootProject.repositories)
 
+    apply(plugin = "maven-publish")
     apply(plugin = libs.plugins.kotlin.get().pluginId)
     apply(plugin = libs.plugins.serialization.get().pluginId)
 
@@ -49,28 +50,28 @@ subprojects {
         withJavadocJar()
     }
 
-    if ((properties["publish"] as? String)?.toBooleanStrictOrNull() ?: false) {
-        apply(plugin = "maven-publish")
+    tasks.withType<Jar> {
+        destinationDirectory = file("$rootDir/build")
+    }
 
-        publishing {
-            repositories {
-                maven {
-                    name = "GitHubPackages"
-                    url = uri("https://maven.pkg.github.com/$user/$repo")
-                    credentials {
-                        username = githubActor
-                        password = githubToken
-                    }
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/$user/$repo")
+                credentials {
+                    username = githubActor
+                    password = githubToken
                 }
             }
+        }
 
-            publications {
-                create<MavenPublication>("maven") {
-                    groupId = project.group.toString()
-                    artifactId = project.name
-                    version = project.version.toString()
-                    from(components["java"])
-                }
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = project.group.toString()
+                artifactId = project.name
+                version = project.version.toString()
+                from(components["java"])
             }
         }
     }
