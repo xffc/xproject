@@ -1,6 +1,6 @@
 dependencies {
     implementation(kotlin("reflect"))
-    implementation(project(":core"))
+    api(project(":core"))
     implementation(libs.serialization.json)
-    implementation(libs.ktor.network)
+    api(libs.ktor.network)
 }
