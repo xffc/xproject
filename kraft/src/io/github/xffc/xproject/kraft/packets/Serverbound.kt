@@ -1,8 +1,8 @@
-package `fun`.xffc.xproject.kraft.packets
+package io.github.xffc.xproject.kraft.packets
 
-import `fun`.xffc.xproject.kraft.packets.codec.Codec
-import `fun`.xffc.xproject.kraft.packets.util.NumberType
-import `fun`.xffc.xproject.kraft.types.State
+import io.github.xffc.xproject.kraft.packets.codec.Codec
+import io.github.xffc.xproject.kraft.packets.util.NumberType
+import io.github.xffc.xproject.kraft.types.State
 
 class Handshake(
     @Codec.Integer(NumberType.VAR)

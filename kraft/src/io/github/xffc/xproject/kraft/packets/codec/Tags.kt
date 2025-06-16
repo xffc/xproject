@@ -1,12 +1,12 @@
-package `fun`.xffc.xproject.kraft.packets.codec
+package io.github.xffc.xproject.kraft.packets.codec
 
-import `fun`.xffc.xproject.kraft.packets.util.NumberType
-import `fun`.xffc.xproject.kraft.readMCString
-import `fun`.xffc.xproject.kraft.readVarInt
-import `fun`.xffc.xproject.kraft.readVarLong
-import `fun`.xffc.xproject.kraft.writeMCString
-import `fun`.xffc.xproject.kraft.writeVarInt
-import `fun`.xffc.xproject.kraft.writeVarLong
+import io.github.xffc.xproject.kraft.packets.util.NumberType
+import io.github.xffc.xproject.kraft.readMCString
+import io.github.xffc.xproject.kraft.readVarInt
+import io.github.xffc.xproject.kraft.readVarLong
+import io.github.xffc.xproject.kraft.writeMCString
+import io.github.xffc.xproject.kraft.writeVarInt
+import io.github.xffc.xproject.kraft.writeVarLong
 import kotlinx.io.Buffer
 import kotlinx.io.readUInt
 import kotlinx.io.readULong

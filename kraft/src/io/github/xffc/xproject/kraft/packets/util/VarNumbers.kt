@@ -1,4 +1,4 @@
-package `fun`.xffc.xproject.kraft.packets.util
+package io.github.xffc.xproject.kraft.packets.util
 
 import kotlin.experimental.or
 

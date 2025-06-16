@@ -1,6 +1,6 @@
-package `fun`.xffc.xproject.kraft.types
+package io.github.xffc.xproject.kraft.types
 
-import `fun`.xffc.xproject.core.serializers.UUIDSerializer
+import io.github.xffc.xproject.core.serializers.UUIDSerializer
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonIgnoreUnknownKeys

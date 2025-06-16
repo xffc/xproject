@@ -1,8 +1,8 @@
-package `fun`.xffc.xproject.kraft.packets.codec
+package io.github.xffc.xproject.kraft.packets.codec
 
-import `fun`.xffc.xproject.kraft.packets.Packet
-import `fun`.xffc.xproject.kraft.packets.util.NumberType
-import `fun`.xffc.xproject.kraft.types.State
+import io.github.xffc.xproject.kraft.packets.Packet
+import io.github.xffc.xproject.kraft.packets.util.NumberType
+import io.github.xffc.xproject.kraft.types.State
 import kotlinx.io.Buffer
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
@@ -25,7 +25,7 @@ abstract class Codec<T : Packet>(
 
     internal fun KProperty<*>.getTag(): Tag<*> {
         annotations.forEach { annotation ->
-            return Tag.annotations[annotation.annotationClass]?.primaryConstructor?.call(annotation) ?: return@forEach
+            return Tag.Companion.annotations[annotation.annotationClass]?.primaryConstructor?.call(annotation) ?: return@forEach
         }
 
         throw IllegalArgumentException("No tag for property $this")

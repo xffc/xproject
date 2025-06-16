@@ -1,9 +1,9 @@
-package `fun`.xffc.xproject.kraft
+package io.github.xffc.xproject.kraft
 
-import `fun`.xffc.xproject.kraft.packets.util.readVarInt
-import `fun`.xffc.xproject.kraft.packets.util.readVarLong
-import `fun`.xffc.xproject.kraft.packets.util.writeVarInt
-import `fun`.xffc.xproject.kraft.packets.util.writeVarLong
+import io.github.xffc.xproject.kraft.packets.util.readVarInt
+import io.github.xffc.xproject.kraft.packets.util.readVarLong
+import io.github.xffc.xproject.kraft.packets.util.writeVarInt
+import io.github.xffc.xproject.kraft.packets.util.writeVarLong
 import kotlinx.io.Sink
 import kotlinx.io.Source
 import kotlinx.io.readString

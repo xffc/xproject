@@ -1,4 +1,4 @@
-package `fun`.xffc.xproject.core.serializers
+package io.github.xffc.xproject.core.serializers
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind

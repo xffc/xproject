@@ -1,4 +1,4 @@
 dependencies {
-    implementation(libs.coroutines.core)
+    api(libs.coroutines.core)
     implementation(libs.serialization.core)
 }

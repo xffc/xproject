@@ -1,8 +1,8 @@
-package `fun`.xffc.xproject.kraft
+package io.github.xffc.xproject.kraft
 
-import `fun`.xffc.xproject.kraft.packets.Handshake
-import `fun`.xffc.xproject.kraft.packets.Packet
-import `fun`.xffc.xproject.kraft.types.State
+import io.github.xffc.xproject.kraft.packets.Handshake
+import io.github.xffc.xproject.kraft.packets.Packet
+import io.github.xffc.xproject.kraft.types.State
 import io.ktor.network.selector.SelectorManager
 import io.ktor.network.sockets.Socket
 import io.ktor.network.sockets.SocketAddress

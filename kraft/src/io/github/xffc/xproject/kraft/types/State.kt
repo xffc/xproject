@@ -1,7 +1,8 @@
-package `fun`.xffc.xproject.kraft.types
+package io.github.xffc.xproject.kraft.types
 
-import `fun`.xffc.xproject.kraft.packets.codec.Tag
+import io.github.xffc.xproject.kraft.packets.codec.Tag
 
+@Suppress("UNUSED")
 enum class State {
     @Tag.Int.Ordinal(0)
     HANDSHAKING,

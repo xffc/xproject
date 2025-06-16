@@ -1,17 +1,17 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
     `maven-publish`
 
     alias(libs.plugins.kotlin)
     alias(libs.plugins.serialization) apply false
+    alias(libs.plugins.mavenpublish)
 }
 
-group = "fun.xffc.${rootProject.name}"
+group = "io.github.xffc.${rootProject.name}"
 
-val user = property("github.user") as String
-val repo = property("github.repo") as String
-
-val githubActor = System.getenv("GITHUB_ACTOR")!!
-val githubToken = System.getenv("GITHUB_TOKEN")!!
+val githubAuthor = rootProject.property("github.author") as String
+val githubProject = "$githubAuthor/${rootProject.name}"
 
 repositories {
     mavenCentral()
@@ -22,12 +22,13 @@ subprojects {
 
     group = rootProject.group
     version = property("version") as String
+    description = property("description") as String
 
     repositories.addAll(rootProject.repositories)
 
-    apply(plugin = "maven-publish")
     apply(plugin = libs.plugins.kotlin.get().pluginId)
     apply(plugin = libs.plugins.serialization.get().pluginId)
+    apply(plugin = libs.plugins.mavenpublish.get().pluginId)
 
     sourceSets.main {
         java.srcDir("src")
@@ -45,35 +46,47 @@ subprojects {
         jvmToolchain(21)
     }
 
-    java {
-        withSourcesJar()
-        withJavadocJar()
+    mavenPublishing {
+        coordinates(
+            groupId = group as String,
+            artifactId = name,
+            version = version as String
+        )
+
+        pom {
+            name.set(project.name)
+            description.set(project.description)
+            url.set("https://$githubProject")
+
+            licenses {
+                license {
+                    name = "MIT"
+                    url = "https://${githubProject.replace("github.com", "raw.githubusercontent.com")}/refs/heads/master/LICENSE"
+                }
+            }
+
+            developers {
+                developer {
+                    id.set("xffcsk")
+                    name.set("xffc")
+                    url.set(githubAuthor)
+                }
+            }
+
+            scm {
+                url.set(githubProject)
+                connection.set("scm:git:git://$githubProject.git")
+                developerConnection.set("scm:git:ssh://$githubProject.git")
+            }
+        }
+
+        publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+
+        signAllPublications()
     }
 
     tasks.withType<Jar> {
-        destinationDirectory = file("$rootDir/build")
-    }
-
-    publishing {
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/$user/$repo")
-                credentials {
-                    username = githubActor
-                    password = githubToken
-                }
-            }
-        }
-
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = project.group.toString()
-                artifactId = project.name
-                version = project.version.toString()
-                from(components["java"])
-            }
-        }
+        destinationDirectory.set(file("$rootDir/build"))
     }
 }
 
