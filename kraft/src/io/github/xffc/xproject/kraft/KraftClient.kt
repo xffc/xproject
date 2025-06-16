@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 import kotlinx.io.Buffer
 
 class KraftClient private constructor(
-    internal val socket: Socket,
+    val socket: Socket,
     internal val chunkSize: Int,
     val state: State
 ) {
@@ -32,8 +32,10 @@ class KraftClient private constructor(
     private val _packetHandlers = MutableSharedFlow<Packet>(extraBufferCapacity = 10)
     val packetHandlers = _packetHandlers.asSharedFlow()
 
+    val scope = CoroutineScope(Dispatchers.IO)
+
     init {
-        CoroutineScope(Dispatchers.IO).launch {
+        scope.launch {
             while (!socket.isClosed) {
                 receivePacket()?.also { packet ->
                     _packetHandlers.tryEmit(packet)
@@ -43,7 +45,7 @@ class KraftClient private constructor(
     }
 
     inline fun <reified T : Packet> onPacket(crossinline action: suspend T.() -> Unit) =
-        CoroutineScope(Dispatchers.Default).launch {
+        scope.launch {
             packetHandlers
                 .filterIsInstance<T>()
                 .collect { packet ->
