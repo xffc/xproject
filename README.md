@@ -16,8 +16,8 @@ repositories {
 
 ```kotlin
 dependencies {
-    implementation("io.github.com.xffc.xproject:core:VERSION")
-    implementation("io.github.com.xffc.xproject:kraft:VERSION")
+    implementation("io.github.com.xffc.xproject:core:1.0")
+    implementation("io.github.com.xffc.xproject:kraft:1.2")
 }
 ```
 
@@ -35,6 +35,11 @@ signing.secretKeyRingFile=path to secring.gpg (example: C:\Users\xffc\.gnupg\sec
 
 mavenCentralUsername=your sonatype user
 mavenCentralPassword=your sonatype token
+```
+
+Run 
+```bash
+gradlew publish
 ```
 
 ## License

@@ -14,7 +14,7 @@ import java.util.UUID
 data class ServerStatus(
     val version: Version,
     val players: Players? = null,
-    val description: @Serializable(with = ComponentSerializer::class) Component,
+    val description: @Serializable(with = ComponentSerializer::class) Component? = null,
     val favicon: String? = null,
     val enforcesSecureChat: Boolean? = null
 ) {
