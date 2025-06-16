@@ -1,9 +1,11 @@
 package io.github.xffc.xproject.kraft.types
 
 import io.github.xffc.xproject.core.serializers.UUIDSerializer
+import io.github.xffc.xproject.kraft.serializers.ComponentSerializer
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonIgnoreUnknownKeys
+import net.kyori.adventure.text.Component
 import java.util.UUID
 
 @OptIn(ExperimentalSerializationApi::class)
@@ -12,6 +14,7 @@ import java.util.UUID
 data class ServerStatus(
     val version: Version,
     val players: Players? = null,
+    val description: @Serializable(with = ComponentSerializer::class) Component,
     val favicon: String? = null,
     val enforcesSecureChat: Boolean? = null
 ) {
