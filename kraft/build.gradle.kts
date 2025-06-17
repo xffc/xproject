@@ -5,6 +5,6 @@ dependencies {
     api(libs.ktor.network)
 
     api(libs.adventure.api)
-    implementation(libs.adventure.gson)
-    implementation(libs.adventure.plain)
+    api(libs.adventure.gson)
+    api(libs.adventure.plain)
 }
