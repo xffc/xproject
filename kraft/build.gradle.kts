@@ -4,7 +4,11 @@ dependencies {
     implementation(libs.serialization.json)
     api(libs.ktor.network)
 
-    api(libs.adventure.api)
+    implementation(libs.gson)
+
+    api(libs.adventure.api) {
+        exclude("com.google.code.gson")
+    }
     api(libs.adventure.gson)
     api(libs.adventure.plain)
 }
