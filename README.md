@@ -31,7 +31,7 @@ Add to your `~/.gradle/gradle.properties` following:
 ```properties
 signing.keyId=last 8 chars from key
 signing.password=key passphrase
-signing.secretKeyRingFile=path to secring.gpg (example: C:\Users\xffc\.gnupg\secring.gpg)
+signing.secretKeyRingFile=path to secring.gpg (example: C:/Users/xffc/.gnupg/secring.gpg)
 
 mavenCentralUsername=your sonatype user
 mavenCentralPassword=your sonatype token
